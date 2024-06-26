@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+iframe {
+  height: 100vh;
+  width: 100vw;
+}
+
+.test {
+  background-color: rebeccapurple;
+}
