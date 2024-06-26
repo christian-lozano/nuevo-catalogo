@@ -40,11 +40,11 @@ export default function Product({ products, generoSku = false, tipoprecio }) {
       pricemayorista:
         tipoprecio === "emprendedor"
           ? emprendedor
-            ? precioProduct(emprendedor, products.priceecommerce)
-            : products.priceemprendedor
+            ? precioProduct(emprendedor, products?.priceecommerce)
+            : products?.priceemprendedor
           : mayorista
-          ? precioProduct(mayorista, products.priceecommerce)
-          : products.pricemayorista,
+          ? precioProduct(mayorista, products?.priceecommerce)
+          : products?.pricemayorista,
     });
   };
 

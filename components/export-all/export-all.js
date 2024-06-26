@@ -21,7 +21,7 @@ export default function ExportAll({ products, tipoprecio }) {
   };
   const addToCatalogo = () => {
     // test
-    
+
     // toast({
     //   title: `${products.name})`,
     //   description: "Producto Agregado al Catalogo",
@@ -42,19 +42,23 @@ export default function ExportAll({ products, tipoprecio }) {
           price: products.price,
           products,
           tipoprecio: tipoprecio,
-           priceecommerce: precioProduct(retail, products.priceecommerce),
-      priceecommerceSinDesc: products.priceecommerce,
-      precioSinDescuento:
-        tipoprecio === "emprendedor"
-          ? products.priceemprendedor
-          : products.pricemayorista,
-      descuentoEmprendedor: emprendedor,
-      descuentoMayorista: mayorista,
-      descuentoRetail: retail,
-      pricemayorista:
-        tipoprecio === "emprendedor"
-          ? precioProduct(emprendedor, products.priceecommerce)
-          : precioProduct(mayorista, products.priceecommerce),
+          priceecommerce: precioProduct(retail, products.priceecommerce),
+          priceecommerceSinDesc: products.priceecommerce,
+          precioSinDescuento:
+            tipoprecio === "emprendedor"
+              ? products.priceemprendedor
+              : products.pricemayorista,
+          descuentoEmprendedor: emprendedor,
+          descuentoMayorista: mayorista,
+          descuentoRetail: retail,
+          pricemayorista:
+            tipoprecio === "emprendedor"
+              ? emprendedor
+                ? precioProduct(emprendedor, products?.priceecommerce)
+                : products?.priceemprendedor
+              : mayorista
+              ? precioProduct(mayorista, products?.priceecommerce)
+              : products?.pricemayorista,
         })
       );
   };
@@ -62,9 +66,7 @@ export default function ExportAll({ products, tipoprecio }) {
     <div className="flex w-full justify-center items-center p-5  flex-col ">
       <div className="container mx-auto w-2/3 flex flex-col gap-y-5 mb-20">
         <form onSubmit={saveToLocalStorage} className="gap-y-5 flex-col flex">
-          <div className="py-5 text-center uppercase">
-            Descuentos
-          </div>
+          <div className="py-5 text-center uppercase">Descuentos</div>
           <div class="relative h-10 w-full min-w-[200px]">
             <input
               onChange={(e) => setDescuentoEmprendedor(e.target.value)}
