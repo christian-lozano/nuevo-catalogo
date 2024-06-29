@@ -51,11 +51,13 @@ export function ProductGrid({ products, generoSku, tipoprecio }: Props) {
         {loadMore < products?.length ? (
           <button
             type="button"
-            className="group relative overflow-hidden rounded-lg bg-black px-2 py-3 text-sm md:text-base mt-5"
+            className="group relative overflow-hidden rounded-lg bg-white px-2 py-3 text-sm md:text-base"
             onClick={showMoreArticles}
           >
             <div className="duration-[350ms] absolute inset-0  w-3  bg-[var(--color-naranja)] transition-all ease-out group-hover:w-full"></div>
-            <span className="relative text-white ">Ver Mas Productos</span>
+            <span className="relative text-black group-hover:text-white ">
+              Ver Mas Productos
+            </span>
           </button>
         ) : (
           <button

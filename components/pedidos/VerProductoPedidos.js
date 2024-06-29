@@ -308,6 +308,10 @@ export default function VerPedidos({ productView }) {
                 departamento?.find(
                   (el) => el.id_ubigeo === productView.provincia
                 )?.nombre_ubigeo
+                  ? departamento?.find(
+                      (el) => el.id_ubigeo === productView.provincia
+                    )?.nombre_ubigeo
+                  : productView.provincia
               }
             />
           </div>
@@ -327,6 +331,10 @@ export default function VerPedidos({ productView }) {
               value={
                 provincia?.find((el) => el.id_ubigeo === productView.distrito)
                   ?.nombre_ubigeo
+                  ? provincia?.find(
+                      (el) => el.id_ubigeo === productView.distrito
+                    )?.nombre_ubigeo
+                  : productView.distrito
               }
             />
           </div>

@@ -40,7 +40,7 @@ export default function ActivarVerPagos({ children }) {
         {children}
         <button
           onClick={() => setactivarVer(!activarVer)}
-          className="bg-black text-white absolute bottom-10 rounded-xl p-1"
+          className="bg-white text-black absolute top-10 right-16 rounded-xl p-1"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
