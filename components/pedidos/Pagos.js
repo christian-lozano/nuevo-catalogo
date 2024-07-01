@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import Pago from "./Pago";
+import ExportPedidos from "./Export-pedidos";
 function TablaPedidos({ children }) {
   return (
     <div className="mt-4 mx-4">
@@ -96,16 +97,34 @@ export default function Pagos({ data }) {
   const showMoreArticles = () => {
     setLoadMore(loadMore + articlesShown);
   };
-  const [cliente, setCliente] = useState(false);
+
   const [search, setSearch] = useState("");
+  const [dataSearch, setDataSearch] = useState([]);
   useEffect(() => {
-    setCliente(true);
+    if (search.length > 0) {
+      setDataSearch(
+        pedidos.filter(
+          (el) =>
+            el.nombres.toUpperCase() === search.toUpperCase() ||
+            el.documento === search ||
+            el.apellidos.toUpperCase() === search.toUpperCase()
+        )
+      );
+    } else {
+      setDataSearch(pedidos);
+    }
+  }, [search]);
+  const [client, setClient] = useState(false);
+  useEffect(() => {
+    setClient(true);
   }, []);
 
+  console.log(dataSearch);
   return (
     <div>
       <div class=" text-white flex justify-end ">
         <div class="flex items-center p-5">
+          {/* <ExportPedidos data={dataSearch}></ExportPedidos> */}
           <input
             onChange={(e) => setSearch(e.target.value)}
             type="text"
@@ -117,21 +136,13 @@ export default function Pagos({ data }) {
       <TablaPedidos>
         {search.length > 0 ? (
           <>
-            {pedidos
-              .filter(
-                (el) =>
-                  el.nombres.toUpperCase() === search.toUpperCase() ||
-                  el.documento === search ||
-                  el.apellidos.toUpperCase() === search.toUpperCase()
-              )
-              .slice(0, loadMore)
-              .map((el, i) => (
-                <Pago key={i} product={el} />
-              ))}
+            {dataSearch.slice(0, loadMore).map((el, i) => (
+              <Pago key={i} product={el} />
+            ))}
           </>
         ) : (
           <>
-            {pedidos.slice(0, loadMore).map((el, i) => (
+            {dataSearch.slice(0, loadMore).map((el, i) => (
               <Pago key={i} product={el} />
             ))}
           </>
@@ -140,7 +151,7 @@ export default function Pagos({ data }) {
           <td>
             <div className="flex flex-col w-[95%] justify-center absolute">
               <div className="flex justify-center">
-                {loadMore <  pedidos?.length ? (
+                {loadMore < dataSearch?.length ? (
                   <button
                     type="button"
                     className="group relative overflow-hidden rounded-lg bg-black px-2 py-3 text-sm md:text-base mt-5"
@@ -163,7 +174,8 @@ export default function Pagos({ data }) {
                 )}
               </div>
               <div className="mt-5 flex justify-center">
-                {loadMore} de {pedidos?.length} pedidos
+                {loadMore > dataSearch?.length ? dataSearch?.length : loadMore}{" "}
+                de {dataSearch?.length} Productos
               </div>
             </div>
           </td>

@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "public/pdf/PdfPage.js", "components/export-all/export-all.js", "app/fritzsport/pedidos/entregado/page.tsx", "components/pedidos/MoverPedido.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "public/pdf/PdfPage.js", "components/export-all/export-all.js", "app/fritzsport/pedidos/entregado/page.tsx", "components/pedidos/MoverPedido.js", "components/pedidos/Export-pedidos.js"],
   "exclude": ["node_modules"]
 }
